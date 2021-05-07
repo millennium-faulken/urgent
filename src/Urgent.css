@@ -71,6 +71,10 @@ p {
 }
 
 @media (max-width: 390px) {
+  .urgent {
+  font-size: 7vw;
+  }
+  
   .taskContainer {
     height: 85vh;
   }
