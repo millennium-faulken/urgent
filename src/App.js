@@ -1,9 +1,10 @@
 import './App.css';
+import Urgent from './Urgent';
 
 function App() {
   return (
     <div className="App">
-      <h1>Urgent!</h1>
+      <Urgent />
     </div>
   );
 }
