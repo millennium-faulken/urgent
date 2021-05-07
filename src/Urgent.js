@@ -95,7 +95,7 @@ function Urgent() {
                   <h2>{post.task}</h2>
                   <p>{post.desc}</p>
                 </div>
-                <button onClick={() => deleteTask(post)}>X</button>
+                <button onClick={() => deleteTask(post)}>Done</button>
               </div>
             ))}
           </div>

@@ -5,7 +5,7 @@ h4,
 h5,
 h6,
 p {
-margin: 0;
+  margin: 0;
 }
 
 .urgent {
@@ -39,8 +39,7 @@ margin: 0;
   width: 25%;
 }
 
-
-.tasksTitle h1{
+.tasksTitle h1 {
   text-align: center;
   text-decoration: underline;
 }
@@ -60,7 +59,6 @@ margin: 0;
 }
 
 .taskPost button {
-  
 }
 
 .postContainer {
@@ -70,4 +68,27 @@ margin: 0;
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-content: space-around;
+}
+
+@media (max-width: 390px) {
+  .taskContainer {
+    height: 85vh;
+  }
+
+  .taskPost {
+    margin-top: 20px;
+    height: 80px;
+    width: 25%;
+    flex-direction: column;
+    padding: 5px;
+    font-size: 3vw;
+  }
+
+  .taskInput button {
+    width: 75%;
+  }
+
+  .tasksTitle h1 {
+    font-size: 5vw;
+  }
 }
