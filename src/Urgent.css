@@ -31,12 +31,9 @@ p {
   text-align: center;
 }
 
-.taskInput input {
-  /* margin: 10px 0 10px 0; */
-}
-
 .taskInput button {
   width: 25%;
+  margin: 0 auto 0 auto;
 }
 
 .tasksTitle h1 {
@@ -46,8 +43,7 @@ p {
 
 .taskPost {
   margin-top: 20px;
-  width: 17%;
-  height: 100px;
+  padding: 20px;
   border-radius: 5px;
   background: rgba(197, 198, 200, 0.5);
   text-align: center;
@@ -58,11 +54,12 @@ p {
   align-items: center;
 }
 
-.taskPost button {
-}
+/* .taskPost button {
+} */
 
 .postContainer {
   background-color: #bda891;
+  padding: 20px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -70,7 +67,11 @@ p {
   align-content: space-around;
 }
 
-@media (max-width: 390px) {
+.postInfo {
+  margin-right: 10px;
+}
+
+@media (max-width: 500px) {
   .urgent {
   font-size: 7vw;
   }
@@ -81,11 +82,11 @@ p {
 
   .taskPost {
     margin-top: 20px;
-    height: 80px;
-    width: 25%;
+    /* height: 80px; */
+    /* width: 25%; */
     flex-direction: column;
     padding: 5px;
-    font-size: 3vw;
+    font-size: 2.5vw;
   }
 
   .taskInput button {
@@ -93,6 +94,6 @@ p {
   }
 
   .tasksTitle h1 {
-    font-size: 5vw;
+    font-size: 4vw;
   }
 }

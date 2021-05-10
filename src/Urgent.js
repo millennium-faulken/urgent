@@ -77,7 +77,7 @@ function Urgent() {
           <input
             type="text"
             value={desc}
-            placeholder="Description"
+            placeholder="Notes"
             onChange={(e) => setDesc(e.target.value)}
           />
           <button onClick={(e) => addTask(e)}>Submit</button>
@@ -91,7 +91,7 @@ function Urgent() {
           <div className="postContainer">
             {tasks.map((post) => (
               <div className="taskPost" key={post.id}>
-                <div>
+                <div className="postInfo">
                   <h2>{post.task}</h2>
                   <p>{post.desc}</p>
                 </div>
