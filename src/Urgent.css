@@ -8,18 +8,19 @@ p {
   margin: 0;
 }
 
-.urgent {
-  text-align: center;
-  font-family: "Knewave", cursive;
-  font-size: 5vw;
-}
-
 .taskContainer {
   background-color: #bda891;
   height: 65vh;
   font-family: "Roboto", sans-serif;
   border-radius: 5px;
 }
+
+.urgent {
+  font-family: "Knewave", cursive;
+  font-size: 5vw;
+  text-align: center;
+}
+
 
 .taskInput {
   display: flex;

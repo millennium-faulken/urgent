@@ -3,7 +3,7 @@ import firebase from "./firebase";
 import { v4 as uuidv4 } from "uuid";
 import Login from "./auth/Login";
 import Welcome from "./Welcome";
-import { AuthContext } from './auth/Auth';
+import { AuthContext } from "./auth/Auth";
 import "./Urgent.css";
 
 function Urgent() {
@@ -38,8 +38,8 @@ function Urgent() {
 
   function addTask(e) {
     e.preventDefault();
-    const owner = currentUser ? currentUser.uid : 'unknown';
-    const ownerEmail = currentUser ? currentUser.email : 'unknown';
+    const owner = currentUser ? currentUser.uid : "unknown";
+    const ownerEmail = currentUser ? currentUser.email : "unknown";
     const newTask = {
       task,
       desc,
@@ -70,12 +70,12 @@ function Urgent() {
 
   return (
     <div className="main">
+      <Login />
       <div className="urgent">
         <h1>URGENT!</h1>
       </div>
       <div className="taskContainer">
         <Welcome />
-        <Login />
         <div className="taskInput">
           <h3>Add Task</h3>
           <input

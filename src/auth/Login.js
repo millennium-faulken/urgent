@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import firebase from "../firebase";
+import "./Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -42,7 +43,7 @@ const Login = () => {
   };
 
   return (
-    <div className="main">
+    <div className="mainLogin">
       <div className="inputBox">
         {loggedIn ? null : <h3>Login/Register</h3>}
         {loggedIn ? null : (
@@ -50,7 +51,7 @@ const Login = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="email"
+            placeholder="E-mail"
           />
         )}
         {loggedIn ? null : (
@@ -58,12 +59,12 @@ const Login = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="password"
+            placeholder="Password"
           />
         )}
         {loggedIn ? null : <button onClick={register}>Register</button>}
         {loggedIn ? null : <button onClick={login}>Login</button>}
-        <button onClick={logOut}>Log Out</button>
+        {loggedIn ? <button onClick={logOut}>Log Out</button> : null}
       </div>
     </div>
   );
