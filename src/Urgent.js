@@ -8,7 +8,6 @@ import "./Urgent.css";
 
 function Urgent() {
   const { currentUser } = useContext(AuthContext);
-  const currentUserId = currentUser ? currentUser.uid : null;
   const [tasks, setTasks] = useState([]);
   const [task, setTask] = useState("");
   const [desc, setDesc] = useState("");
