@@ -7,7 +7,13 @@ const Welcome = () => {
   const userName = currentUserEmail.substr(0, currentUserEmail.indexOf("@"));
   const displayName = userName.charAt(0).toUpperCase() + userName.slice(1);
 
-  return <h2>{`Welcome ${displayName}!`}</h2>;
+  return (
+  
+    <h2>{currentUserEmail && `Welcome ${displayName}`}</h2>
+
+  );
+
+
 };
 
 export default Welcome;

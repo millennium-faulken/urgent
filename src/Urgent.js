@@ -74,8 +74,8 @@ function Urgent() {
         <h1>URGENT!</h1>
       </div>
       <div className="taskContainer">
-        <Login />
         <Welcome />
+        <Login />
         <div className="taskInput">
           <h3>Add Task</h3>
           <input
