@@ -1,10 +1,13 @@
-import './App.css';
-import Urgent from './Urgent';
+import "./App.css";
+import Urgent from "./Urgent";
+import { AuthProvider } from "./auth/Auth";
 
 function App() {
   return (
     <div className="App">
-      <Urgent />
+      <AuthProvider>
+        <Urgent />
+      </AuthProvider>
     </div>
   );
 }

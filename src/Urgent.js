@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import firebase from "./firebase";
 import { v4 as uuidv4 } from "uuid";
+import Login from "./auth/Login";
+import Welcome from "./Welcome";
+import { AuthContext } from './auth/Auth';
 import "./Urgent.css";
 
 function Urgent() {
+  const { currentUser } = useContext(AuthContext);
+  const currentUserId = currentUser ? currentUser.uid : null;
   const [tasks, setTasks] = useState([]);
   const [task, setTask] = useState("");
   const [desc, setDesc] = useState("");
@@ -34,9 +39,13 @@ function Urgent() {
 
   function addTask(e) {
     e.preventDefault();
+    const owner = currentUser ? currentUser.uid : 'unknown';
+    const ownerEmail = currentUser ? currentUser.email : 'unknown';
     const newTask = {
       task,
       desc,
+      owner,
+      ownerEmail,
       id: uuidv4(),
       createdOn: firebase.firestore.FieldValue.serverTimestamp(),
       lastUpdate: firebase.firestore.FieldValue.serverTimestamp(),
@@ -66,6 +75,8 @@ function Urgent() {
         <h1>URGENT!</h1>
       </div>
       <div className="taskContainer">
+        <Login />
+        <Welcome />
         <div className="taskInput">
           <h3>Add Task</h3>
           <input
