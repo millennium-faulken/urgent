@@ -32,6 +32,16 @@ p {
   text-align: center;
 }
 
+.taskInput input {
+  width: 100%;
+  padding: 5px 5px;
+  margin: 0px 5px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 .taskInput button {
   margin: 0 auto 0 auto;
 }
