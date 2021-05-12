@@ -9,10 +9,11 @@ const Login = () => {
 
   const register = () => {
     firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(() => {
+    .auth()
+    .createUserWithEmailAndPassword(email, password)
+    .then(() => {
         resetInput();
+        setLoggedIn(true);
       })
       .catch((err) => {
         console.error(err);
