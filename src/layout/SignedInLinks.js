@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../auth/Auth";
 import firebase from "../firebase";
+import "./Nav.css";
 
 const logOut = () => {
   firebase.auth().signOut();
