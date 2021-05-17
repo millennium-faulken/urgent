@@ -5,7 +5,7 @@ import { AuthProvider } from "./auth/Auth";
 function App() {
   return (
     <div className="App">
-      <AuthProvider>
+      <AuthProvider >
         <Urgent />
       </AuthProvider>
     </div>

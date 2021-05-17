@@ -5,6 +5,7 @@ import Login from "./auth/Login";
 import Welcome from "./Welcome";
 import { AuthContext } from "./auth/Auth";
 import "./Urgent.css";
+import { get } from "mongoose";
 
 function Urgent() {
   const { currentUser } = useContext(AuthContext);
@@ -18,19 +19,23 @@ function Urgent() {
 
   function getTasks() {
     setLoading(true);
-    ref.onSnapshot((querySnapshot) => {
-      const items = [];
-      querySnapshot.forEach((doc) => {
-        items.push(doc.data());
+    if (currentUser) {
+      ref.where("owner", "==", currentUser.uid).onSnapshot((querySnapshot) => {
+        const items = [];
+        querySnapshot.forEach((doc) => {
+          items.push(doc.data());
+        });
+        setTasks(items);
+        setLoading(false);
       });
-      setTasks(items);
-      setLoading(false);
-    });
+    } else {
+      return null;
+    }
   }
 
   useEffect(() => {
     getTasks();
-  }, []);
+  }, [firebase, currentUser]);
 
   function resetInput() {
     setTask("");
@@ -50,7 +55,6 @@ function Urgent() {
       createdOn: firebase.firestore.FieldValue.serverTimestamp(),
       lastUpdate: firebase.firestore.FieldValue.serverTimestamp(),
     };
-
     ref
       .doc(newTask.id)
       .set(newTask)
@@ -68,7 +72,6 @@ function Urgent() {
         console.error(err);
       });
   }
-
   return (
     <div className="main">
       <Login />

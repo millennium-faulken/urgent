@@ -7,13 +7,20 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
 
-  const register = () => {
+  const register = (newUser) => {
     firebase
-    .auth()
-    .createUserWithEmailAndPassword(email, password)
-    .then(() => {
-        resetInput();
-        setLoggedIn(true);
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((res) => {
+        firebase
+          .firestore()
+          .collection("users")
+          .doc(res.user.uid)
+          .set({
+            firstName: newUser.firstName,
+            lastName: newUser.lastName,
+            initials: newUser.firstName[0] + newUser.lastName[0],
+          });
       })
       .catch((err) => {
         console.error(err);

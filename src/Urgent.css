@@ -52,7 +52,7 @@ p {
 }
 
 .taskPost {
-  margin-top: 20px;
+  margin: 20px 10px 0 10px;
   padding: 20px;
   border-radius: 5px;
   background: rgba(197, 198, 200, 0.5);
