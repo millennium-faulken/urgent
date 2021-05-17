@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import firebase from "./firebase";
+import firebase from "../firebase";
 import { v4 as uuidv4 } from "uuid";
-import Login from "./auth/Login";
-import Welcome from "./Welcome";
-import { AuthContext } from "./auth/Auth";
+// import Welcome from "./Welcome";
+import { AuthContext } from "../auth/Auth";
 import "./Urgent.css";
-import { get } from "mongoose";
 
 function Urgent() {
   const { currentUser } = useContext(AuthContext);
@@ -17,25 +15,27 @@ function Urgent() {
 
   const ref = firebase.firestore().collection("tasks");
 
-  function getTasks() {
-    setLoading(true);
-    if (currentUser) {
-      ref.where("owner", "==", currentUser.uid).onSnapshot((querySnapshot) => {
-        const items = [];
-        querySnapshot.forEach((doc) => {
-          items.push(doc.data());
-        });
-        setTasks(items);
-        setLoading(false);
-      });
-    } else {
-      return null;
-    }
-  }
-
   useEffect(() => {
-    getTasks();
-  }, [firebase, currentUser]);
+    function getTasks() {
+      setLoading(true);
+      if (currentUserId) {
+        ref
+          .where("owner", "==", currentUserId)
+          .orderBy("createdOn")
+          .onSnapshot((querySnapshot) => {
+            const items = [];
+            querySnapshot.forEach((doc) => {
+              items.push(doc.data());
+            });
+            setTasks(items);
+            setLoading(false);
+          });
+        } else {
+          return null;
+        }
+      }
+      getTasks();
+  }, [ref, currentUserId]);
 
   function resetInput() {
     setTask("");
@@ -74,12 +74,11 @@ function Urgent() {
   }
   return (
     <div className="main">
-      <Login />
       <div className="urgent">
         <h1>URGENT!</h1>
       </div>
       <div className="taskContainer">
-        <Welcome />
+        {/* <Welcome /> */}
         <div className="taskInput">
           <h3>Add Task</h3>
           <input
@@ -100,7 +99,7 @@ function Urgent() {
         <div className="mainTasks">
           <div className="tasksTitle">
             <h1>Tasks</h1>
-            {loading ? <h1>Loading...</h1> : null}
+            {/* {loading ? <h1>Loading...</h1> : null} */}
           </div>
           <div className="postContainer">
             {tasks.map((post) => (

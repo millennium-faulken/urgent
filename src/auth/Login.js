@@ -5,13 +5,13 @@ import "./Login.css";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
 
   const register = (newUser) => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
+        resetInput();
         firebase
           .firestore()
           .collection("users")
@@ -33,17 +33,13 @@ const Login = () => {
       .signInWithEmailAndPassword(email, password)
       .then(() => {
         resetInput();
-        setLoggedIn(true);
       })
       .catch((err) => {
         console.error(err);
       });
   };
 
-  const logOut = () => {
-    firebase.auth().signOut();
-    setLoggedIn(false);
-  };
+
 
   const resetInput = () => {
     setEmail("");
@@ -53,26 +49,22 @@ const Login = () => {
   return (
     <div className="mainLogin">
       <div className="inputBox">
-        {loggedIn ? null : <h3>Login/Register</h3>}
-        {loggedIn ? null : (
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="E-mail"
-          />
-        )}
-        {loggedIn ? null : (
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-          />
-        )}
-        {loggedIn ? null : <button onClick={register}>Register</button>}
-        {loggedIn ? null : <button onClick={login}>Login</button>}
-        {loggedIn ? <button onClick={logOut}>Log Out</button> : null}
+        <h3>Login/Register</h3>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="E-mail"
+        />
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+        />
+        <button onClick={register}>Register</button>
+        <button onClick={login}>Login</button>
+        {/* <SignedInLinks /> */}
       </div>
     </div>
   );
