@@ -8,11 +8,45 @@
 .signUp {
   font-family: "Knewave", cursive;
   color: black;
-  font-size: xx-large;
+  font-size: x-large;
+  text-decoration: none;
+  margin-right: 15px;
 }
 
 .signIn {
   font-family: "Knewave", cursive;
   color: black;
-  font-size: xx-large;
+  font-size: x-large;
+  text-decoration: none;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0 10px 0;
+  border-bottom: 2px solid black;
+}
+
+.signedOut {
+  display: flex;
+  align-items: center;
+}
+
+.signedIn {
+  display: flex;
+  align-items: center;
+}
+
+.initials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: small;
+  height: 40px;
+  width: 40px;
+  margin-right: 15px;
+  background-color: black;
+  text-decoration: none;
+  color: white;
+  border-radius: 100%;
 }

@@ -7,18 +7,14 @@ import "./Nav.css";
 
 const Nav = () => {
   const { currentUser } = useContext(AuthContext);
-  const currentUserId = currentUser ? currentUser.uid : null;
-  const links = currentUserId ? <SignedInLinks /> : <SignedOutLinks />;
-
+  const links = currentUser ? <SignedInLinks /> : <SignedOutLinks />;
   return (
-    <nav>
-      <div className="container">
-        <Link to="/" className="brand-logo">
-          Urgent!
-        </Link>
-        {links}
-      </div>
-    </nav>
+    <div className="container">
+      <Link to="/" className="brand-logo">
+        Urgent!
+      </Link>
+      {links}
+    </div>
   );
 };
 

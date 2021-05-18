@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
+import { NavLink } from "react-router-dom";
 import { AuthContext } from "../auth/Auth";
 import firebase from "../firebase";
 import "./Nav.css";
 
-const logOut = () => {
+const logOut = async () => {
   firebase.auth().signOut();
 };
 
@@ -11,31 +12,34 @@ const ref = firebase.firestore().collection("users");
 
 const SignedInLinks = () => {
   const { currentUser } = useContext(AuthContext);
-  const currentUserId = currentUser ? currentUser.uid : null;
   const [user, setUser] = useState([]);
 
-  const userInfo = (user) => {
-    if (user) {
-      ref
-        .doc(currentUser.uid)
-        .get()
-        .then((doc) => {
-          console.log(doc.data().initials);
-            return <h2>{doc.data().initials}</h2>
-
-        });
+  useEffect(() => {
+    if (currentUser) {
+      function userInfo() {
+        ref
+          .doc(currentUser.uid)
+          .get()
+          .then((doc) => {
+            const items = [];
+            items.push(doc.data());
+            setUser(items);
+          });
+      }
+      userInfo();
+    } else {
+      return null;
     }
-  };
+  }, [currentUser]);
 
   return (
-    <div>
-      <ul className="right">
-        <button onClick={logOut}>Log Out</button>
-        
-        {/* <NavLink to="/" className="btn btn-floating pink lighten-1">
-            {props.profile.initials}
-          </NavLink> */}
-      </ul>
+    <div className="signedIn">
+      <NavLink to="/" className="initials">
+        {user.map((info) => (
+          <h1 key={currentUser.uid}>{info.initials}</h1>
+        ))}
+      </NavLink>
+      <button onClick={logOut}>Log Out</button>
     </div>
   );
 };
