@@ -6,7 +6,7 @@ import "./Nav.css";
 
 const logOut = async () => {
   await firebase.auth().signOut();
-  window.location.reload(true);
+  window.location.href = "/signin";
 };
 
 const ref = firebase.firestore().collection("users");
