@@ -5,8 +5,10 @@ import firebase from "../firebase";
 import "./Nav.css";
 
 const logOut = async () => {
-  await firebase.auth().signOut();
-  window.location.href = "/";
+  await firebase
+    .auth()
+    .signOut()
+    .catch((error) => alert(error.message));
 };
 
 const ref = firebase.firestore().collection("users");
@@ -40,7 +42,9 @@ const SignedInLinks = () => {
           <h1 key={currentUser.uid}>{info.initials}</h1>
         ))}
       </NavLink>
-      <button onClick={logOut}>Log Out</button>
+      <NavLink to="/" onClick={logOut}>
+        Log Out
+      </NavLink>
     </div>
   );
 };
