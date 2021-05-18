@@ -12,6 +12,7 @@ const SignIn = () => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
+      .then(() => {})
       .catch((err) => {
         console.error(err);
       });
