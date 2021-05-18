@@ -17,9 +17,9 @@ const TaskList = () => {
         ref
           .where("owner", "==", currentUserId)
           .orderBy("createdOn")
-          .onSnapshot((querySnapshot) => {
+          .get().then((item) => {
             const items = [];
-            querySnapshot.forEach((doc) => {
+            item.forEach((doc) => {
               items.push(doc.data());
             });
             setTasks(items);

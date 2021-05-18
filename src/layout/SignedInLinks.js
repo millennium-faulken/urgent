@@ -4,14 +4,12 @@ import { AuthContext } from "../auth/Auth";
 import firebase from "../firebase";
 import "./Nav.css";
 
-const logOut = async () => {
-  await firebase
-    .auth()
-    .signOut()
-    .catch((error) => alert(error.message));
-};
-
 const ref = firebase.firestore().collection("users");
+
+const logOut = async () => {
+  await firebase.auth().signOut();
+  // .catch((error) => console.log(error));
+};
 
 const SignedInLinks = () => {
   const { currentUser } = useContext(AuthContext);
