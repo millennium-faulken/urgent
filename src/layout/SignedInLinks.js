@@ -5,7 +5,8 @@ import firebase from "../firebase";
 import "./Nav.css";
 
 const logOut = async () => {
-  firebase.auth().signOut();
+  await firebase.auth().signOut();
+  window.location.reload();
 };
 
 const ref = firebase.firestore().collection("users");

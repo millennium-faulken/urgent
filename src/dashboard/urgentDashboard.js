@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
-import firebase from "../firebase";
-import { v4 as uuidv4 } from "uuid";
+import React, { useContext } from "react";
 import { AuthContext } from "../auth/Auth";
 import "./Urgent.css";
 import { Redirect } from "react-router";
