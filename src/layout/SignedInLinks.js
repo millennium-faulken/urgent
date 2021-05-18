@@ -40,7 +40,7 @@ const SignedInLinks = () => {
           <h1 key={currentUser.uid}>{info.initials}</h1>
         ))}
       </NavLink>
-      <NavLink to="/" onClick={logOut}>
+      <NavLink to="/" className="signOut" onClick={logOut}>
         Log Out
       </NavLink>
     </div>

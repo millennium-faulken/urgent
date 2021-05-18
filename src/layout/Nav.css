@@ -21,6 +21,13 @@
   text-decoration: none;
 }
 
+.signOut {
+    font-family: "Knewave", cursive;
+    color: black;
+    font-size: larger;
+    text-decoration: none;
+}
+
 .container {
   display: flex;
   justify-content: space-between;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import firebase from "../firebase";
 import { AuthContext } from "../auth/Auth";
+import CreateTask from "./CreateTask";
 
 const TaskList = () => {
   const { currentUser } = useContext(AuthContext);
@@ -17,7 +18,8 @@ const TaskList = () => {
         ref
           .where("owner", "==", currentUserId)
           .orderBy("createdOn")
-          .get().then((item) => {
+          .get()
+          .then((item) => {
             const items = [];
             item.forEach((doc) => {
               items.push(doc.data());
@@ -42,6 +44,8 @@ const TaskList = () => {
   }
   return (
     <div className="taskContainer">
+      <CreateTask />
+      <hr></hr>
       <div className="mainTasks">
         <div className="tasksTitle">
           <h1>Tasks</h1>

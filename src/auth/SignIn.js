@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import { AuthContext } from "../auth/Auth";
 import firebase from "../firebase.js";
+import "./Form.css";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -11,13 +12,11 @@ const SignIn = () => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(() => {
-      })
       .catch((err) => {
         console.error(err);
       });
   };
-  
+
   const { currentUser } = useContext(AuthContext);
   const currentUserId = currentUser ? currentUser.uid : null;
 
@@ -25,8 +24,8 @@ const SignIn = () => {
 
   return (
     <div className="mainLogin">
+      <h3>Login</h3>
       <div className="inputBox">
-        <h3>Login</h3>
         <input
           type="email"
           value={email}

@@ -1,0 +1,24 @@
+.tasksTitle h1 {
+  text-align: center;
+}
+
+.taskInput h1 {
+  text-align: center;
+}
+
+.taskInput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px 0 50px 0;
+}
+
+.taskPost {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+.postInfo {
+  padding: 20px;
+}

@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import { AuthContext } from "../auth/Auth";
 import firebase from "../firebase.js";
+import "./Form.css";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
