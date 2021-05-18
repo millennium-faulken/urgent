@@ -16,7 +16,12 @@
 .taskPost {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   border-bottom: 1px solid black;
+}
+
+.taskPost button {
+  margin-right: 20px;
 }
 
 .postInfo {
