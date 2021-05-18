@@ -8,7 +8,6 @@ const ref = firebase.firestore().collection("tasks");
 
 const CreateTask = () => {
   const { currentUser } = useContext(AuthContext);
-  const currentUserId = currentUser ? currentUser.uid : null;
   const [task, setTask] = useState("");
   const [desc, setDesc] = useState("");
 
