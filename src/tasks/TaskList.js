@@ -5,34 +5,36 @@ import CreateTask from "./CreateTask";
 
 const TaskList = () => {
   const { currentUser } = useContext(AuthContext);
-  const currentUserId = currentUser ? currentUser.uid : null;
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const ref = firebase.firestore().collection("tasks");
 
   useEffect(() => {
+    const currentUserId = currentUser ? currentUser.uid : null;
+
     function getTasks() {
       setLoading(true);
-      if (currentUserId) {
-        ref
-          .where("owner", "==", currentUserId)
-          .orderBy("createdOn")
-          .get()
-          .then((item) => {
-            const items = [];
-            item.forEach((doc) => {
-              items.push(doc.data());
-            });
-            setTasks(items);
+      firebase
+        .firestore()
+        .collection("tasks")
+        .where("owner", "==", currentUserId)
+        .orderBy("createdOn", "desc")
+        .onSnapshot((querySnapshot) => {
+          const items = [];
+          querySnapshot.forEach((doc) => {
+            items.push(doc.data());
           });
-        setLoading(false);
-      } else {
-        return null;
-      }
+          setTasks(items);
+        });
+      setLoading(false);
     }
-    getTasks();
-  }, [ref, currentUserId]);
+    if (currentUser) {
+      getTasks();
+    } else {
+      return null;
+    }
+  }, [currentUser]);
 
   function deleteTask(post) {
     ref

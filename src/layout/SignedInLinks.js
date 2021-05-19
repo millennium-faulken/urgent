@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../auth/Auth";
 import firebase from "../firebase";
@@ -8,30 +8,30 @@ const ref = firebase.firestore().collection("users");
 
 const logOut = async () => {
   await firebase.auth().signOut();
-  // .catch((error) => console.log(error));
 };
 
 const SignedInLinks = () => {
   const { currentUser } = useContext(AuthContext);
   const [user, setUser] = useState([]);
 
+  const userInfo = useCallback(() => {
+    ref
+      .doc(currentUser.uid)
+      .get()
+      .then((doc) => {
+        const items = [];
+        items.push(doc.data());
+        setUser(items);
+      });
+  }, [currentUser.uid]);
+
   useEffect(() => {
     if (currentUser) {
-      function userInfo() {
-        ref
-          .doc(currentUser.uid)
-          .get()
-          .then((doc) => {
-            const items = [];
-            items.push(doc.data());
-            setUser(items);
-          });
-      }
       userInfo();
     } else {
       return null;
     }
-  }, [currentUser]);
+  }, [userInfo, currentUser]);
 
   return (
     <div className="signedIn">
