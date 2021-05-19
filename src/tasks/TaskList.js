@@ -54,7 +54,8 @@ const TaskList = () => {
           {loading ? <h1>Loading Tasks...</h1> : null}
         </div>
         <div className="postContainer">
-          {tasks.map((post) => (
+          {console.log(tasks)}
+          {tasks.length > 0 ? tasks.map((post) => (
             <div className="taskPost" key={post.id}>
               <div className="postInfo">
                 <h2>{post.task}</h2>
@@ -62,7 +63,7 @@ const TaskList = () => {
               </div>
               <button onClick={() => deleteTask(post)}>Done</button>
             </div>
-          ))}
+          )) : <p className="noTasks">You have not added any tasks yet.</p>}
         </div>
       </div>
     </div>

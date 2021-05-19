@@ -9,6 +9,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [firstName, setFirst] = useState("");
   const [lastName, setLast] = useState("");
+  const [error, setError] = useState("");
 
   const signUp = () => {
     firebase
@@ -22,7 +23,7 @@ const SignUp = () => {
           .set({ firstName, lastName, initials: firstName[0] + lastName[0] });
       })
       .catch((err) => {
-        console.error(err);
+        setError(err)
       });
   };
 
@@ -60,6 +61,7 @@ const SignUp = () => {
           placeholder="Password"
         />
         <button onClick={signUp}>Sign Up</button>
+        {error.message ? <p className="errorMessage">{error.message}</p> : null}
       </div>
     </div>
   );

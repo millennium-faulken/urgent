@@ -7,6 +7,7 @@ import "./Form.css";
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const login = () => {
     firebase
@@ -14,7 +15,7 @@ const SignIn = () => {
       .signInWithEmailAndPassword(email, password)
       .then(() => {})
       .catch((err) => {
-        console.error(err);
+        setError(err);
       });
   };
 
@@ -40,6 +41,7 @@ const SignIn = () => {
           placeholder="Password"
         />
         <button onClick={login}>Login</button>
+        {error.message ? <p className="errorMessage">{error.message}</p> : null}
       </div>
     </div>
   );
