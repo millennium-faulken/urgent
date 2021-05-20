@@ -54,7 +54,6 @@ const TaskList = () => {
           {loading ? <h1>Loading Tasks...</h1> : null}
         </div>
         <div className="postContainer">
-          {console.log(tasks)}
           {tasks.length > 0 ? tasks.map((post) => (
             <div className="taskPost" key={post.id}>
               <div className="postInfo">
