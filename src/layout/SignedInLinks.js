@@ -36,9 +36,8 @@ const SignedInLinks = () => {
   return (
     <div className="signedIn">
       <NavLink to="/" className="initials">
-        {user.map((info) => (
-          <h1 key={currentUser.uid}>{info.initials}</h1>
-        ))}
+        {user &&
+          user.map((info) => <h1 key={currentUser.uid}>{info.initials}</h1>)}
       </NavLink>
       <NavLink to="/" className="signOut" onClick={logOut}>
         Log Out
